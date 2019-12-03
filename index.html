@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'> 
+    <link rel="stylesheet" href="style.css">
+    <script src="http://maps.googleapis.com/maps/api/js?key=<CHAVE>&sensor=false"></script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script>
+    
+        function showLocations() {
+            $.get("http://localhost:3000/", function (data) {
+                var lat = -20.1;
+                var lon = 50.1;
+                var myLatlng = new google.maps.LatLng(lat, lon);
+                var mapProp = {
+                    center: myLatlng,
+                    zoom: 5,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    mapTypeControl: false
+                }; //criando objeto mapa 
+
+
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                var obj = jQuery.parseJSON(data);
+                $.each($.parseJSON(data), function (idx, obj) {
+                    var lat = obj.lat;
+                    var lon = obj.lon;
+                    var myLatlng = new google.maps.LatLng(lat, lon);
+                    var marker = new google.maps.Marker({
+                        position: myLatlng,
+                        map: map,
+                        title: obj.nome
+                    });
+                });
+            });
+        }
+        
+    </script>
+
+    <title>Geo Location App</title>
+    
+</head>
+<body onload='showLocations()'>
+    <div class="googleMap"id="googleMap">
+</body>
+</html>

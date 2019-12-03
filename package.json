@@ -1,0 +1,15 @@
+{
+  "name": "geo-location-poc",
+  "version": "1.0.0",
+  "description": "Geolocation Proof of Concept",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yonis Abdillahi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.3.5"
+  }
+}
